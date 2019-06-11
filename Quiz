@@ -1,0 +1,313 @@
+package teste2;
+
+/**
+ *
+ * @author natal
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class resultado2 {
+private JFrame frame;
+private JPanel p1,p2,p3;
+private JLabel [] arrayLabels;
+private JRadioButton [] arrayRButtons;
+private ButtonGroup[] arrayGroups;
+private JPanel [] arrayPanels;
+private CardLayout cl;
+private JLabel lb1,lb2;
+private JButton btn1,btn2;
+private Timer tim;
+private int t,s;
+
+public resultado2(){
+prepararGUI();
+}
+
+private void prepararGUI(){
+
+frame=new JFrame();
+frame.setSize(500, 500);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame.setLocationRelativeTo(null);
+frame.setLayout(new BorderLayout());
+
+
+
+p1=new JPanel();
+p1.setLayout(new FlowLayout());
+
+lb1=new JLabel("Bem-Vindo ao Quiz!");
+
+cl=new CardLayout();
+
+p2=new JPanel();
+p2.setLayout(cl);
+
+arrayPanels = new JPanel[10];
+
+//Uma série de painéis em que irá girar e mostrar perguntas e respostas
+for(int i=0;i<arrayPanels.length;i++){
+
+    arrayPanels[i] = new JPanel();
+    p2.add(arrayPanels[i], String.valueOf(i));
+    arrayPanels[i].setLayout(new GridLayout(0,1));
+
+}
+
+//Matriz RadioButtons com texto
+
+arrayRButtons = new JRadioButton[40];
+
+for(int i=0;i<arrayRButtons.length;i++){
+    arrayRButtons[i] = new JRadioButton();
+
+    switch(i){
+        case 0:arrayRButtons[i].setText("Mesopotâmia");
+            break;
+        case 1:arrayRButtons[i].setText("Grécia");
+            break;
+        case 2:arrayRButtons[i].setText("China");
+            break;
+        case 3:arrayRButtons[i].setText("Egito");
+            break;
+        case 4:arrayRButtons[i].setText("Quinxassa");
+            break;
+        case 5:arrayRButtons[i].setText("Lagos");
+            break;
+        case 6:arrayRButtons[i].setText("Ulan Bator");
+            break;
+        case 7:arrayRButtons[i].setText("Abu Dhabi");
+            break;
+        case 8:arrayRButtons[i].setText("United Kingdom");
+            break;
+        case 9:arrayRButtons[i].setText("Norway");
+            break;
+        case 10:arrayRButtons[i].setText("USA");
+            break;
+        case 11:arrayRButtons[i].setText("Denmark");
+            break;
+        case 12:arrayRButtons[i].setText("Madrasta");
+            break;
+        case 13:arrayRButtons[i].setText("Runaway Bride");
+            break;
+        case 14:arrayRButtons[i].setText("Grease");
+            break;
+        case 15:arrayRButtons[i].setText("notting hill");
+            break;
+        case 16:arrayRButtons[i].setText("Neil Armstrong");
+            break;
+        case 17:arrayRButtons[i].setText("John Lenon");
+            break;
+        case 18:arrayRButtons[i].setText("Martin Luther King");
+            break;
+        case 19:arrayRButtons[i].setText("Winston Churchill");
+            break;
+        case 20:arrayRButtons[i].setText("Meca");
+            break;
+        case 21:arrayRButtons[i].setText("Medina");
+            break;
+        case 22:arrayRButtons[i].setText("Dubai");
+            break;
+        case 23:arrayRButtons[i].setText("Riade");
+            break;
+        case 24:arrayRButtons[i].setText("Espanha");
+            break;
+        case 25:arrayRButtons[i].setText("Veneza");
+            break;
+        case 26:arrayRButtons[i].setText("Portugal");
+            break;
+        case 27:arrayRButtons[i].setText("Genoa");
+            break;
+        case 28:arrayRButtons[i].setText("Holocausto");
+            break;
+        case 29:arrayRButtons[i].setText("Perl Harbour");
+            break;
+        case 30:arrayRButtons[i].setText("O ataque à França");
+            break;
+        case 31:arrayRButtons[i].setText("Blitzkrieg na Polônia");
+            break;
+        case 32:arrayRButtons[i].setText("Leipzig");
+            break;
+        case 33:arrayRButtons[i].setText("Munique");
+            break;
+        case 34:arrayRButtons[i].setText("Leipzig");
+            break;
+        case 35:arrayRButtons[i].setText("Hamburgo");
+            break;
+        case 36:arrayRButtons[i].setText("Chile");
+            break;
+        case 37:arrayRButtons[i].setText("Timor Leste");
+            break;
+        case 38:arrayRButtons[i].setText("Portugal");
+            break;
+        case 39:arrayRButtons[i].setText("Brasil");
+            break;
+
+    }
+}
+
+
+arrayGroups=new ButtonGroup[10];
+
+int j=0;
+for(int i=0;i<arrayGroups.length;i++){
+
+arrayGroups[i] = new ButtonGroup();
+
+arrayGroups[i].add(arrayRButtons[j]);
+arrayGroups[i].add(arrayRButtons[j+1]);
+arrayGroups[i].add(arrayRButtons[j+2]);
+arrayGroups[i].add(arrayRButtons[j+3]);
+
+j+=4;
+}
+
+//Labels array with questions
+arrayLabels = new JLabel[10];
+
+for(int i=0;i<arrayLabels.length;i++){
+    arrayLabels[i] = new JLabel();
+    switch(i){
+        case 0:arrayLabels[i].setText("A pátria dos Jogos Olímpicos é?");
+            break;
+         case 1:arrayLabels[i].setText("Qual é a capital da Nigéria");
+            break;
+        case 2:arrayLabels[i].setText("Que país tem Groenlândia?");
+            break;
+        case 3:arrayLabels[i].setText("Em que o filme, exceto \"Uma linda mulher\" atores são Julia Roberts e Richard Gere");
+            break;
+        case 4:arrayLabels[i].setText("Qual é o primeiro homem na lua?");
+            break;
+        case 5:arrayLabels[i].setText("A capital da Arábia Saudita");
+            break;
+        case 6:arrayLabels[i].setText("Cristóvão Colombo vem de ");
+            break;
+        case 7:arrayLabels[i].setText("Que o evento fez os Estados Unidos entrar em guerra");
+            break;
+        case 8:arrayLabels[i].setText("Qual cidade foi a capital na unificação da Alemanha");
+            break;
+        case 9:arrayLabels[i].setText("Em qual país o ditador Salazar estava no poder");
+            break;
+    }
+}
+
+
+p3=new JPanel();
+p3.setLayout(new FlowLayout());
+
+btn1=new JButton("Proxima questão");
+btn1.setEnabled(false);
+btn1.addActionListener(new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent e){
+        cl.next(p2);
+        btn1.setEnabled(false);
+        btn2.setEnabled(true);
+        t=20;
+        lb2.setText(String.valueOf(t));
+        tim.start();
+        btn1.setText("Proxima questão");
+    }
+});
+
+
+btn2=new JButton("Responda a Questão");
+btn2.addActionListener(new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent e){
+        tim.stop();
+        btn1.setEnabled(true);
+
+        if(arrayRButtons[1].isSelected()
+            ||arrayRButtons[5].isSelected()
+            ||arrayRButtons[11].isSelected()
+            ||arrayRButtons[13].isSelected()
+            ||arrayRButtons[16].isSelected()
+            ||arrayRButtons[23].isSelected()
+            ||arrayRButtons[27].isSelected()
+            ||arrayRButtons[29].isSelected()
+            ||arrayRButtons[32].isSelected()){
+            s+=10;
+            JOptionPane.showMessageDialog(null, "Correto");
+        } else if(arrayRButtons[36].isSelected()){
+            s+=10;
+            JOptionPane.showMessageDialog(null, "Correto, você ganhou: "+s+" Pontos");
+            btn1.setText("Comece novamente o quiz");
+        }else if(arrayRButtons[33].isSelected()
+                ||arrayRButtons[34].isSelected()
+                ||arrayRButtons[35].isSelected()){
+            JOptionPane.showMessageDialog(null, "errado, você ganhou: "+s+" Pontos");
+            btn1.setText("Comece novamente o quiz");
+        }else{
+            JOptionPane.showMessageDialog(null, "Errado");
+        }
+        for (int i = 0; i < 10; i++) {
+            arrayGroups[i].clearSelection();
+        }
+        btn2.setEnabled(false);
+    }
+
+});
+
+t=20;
+
+
+lb2=new JLabel("20");
+tim=new Timer(1000,new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(t>0){
+        t--;
+        lb2.setText(String.valueOf(t));
+        }else{
+            tim.stop();
+            JOptionPane.showMessageDialog(null, "O Seu tempo acabou!");
+            btn2.setEnabled(false); 
+            btn1.setEnabled(true);
+            }
+        }
+    });
+}
+
+private void startGUI(){
+p1.add(lb1);
+
+p3.add(btn1);
+p3.add(btn2);
+p3.add(lb2);
+
+int q=0;
+for(int w=0;w<10;w++){
+
+arrayPanels[w].add(arrayLabels[w]);
+arrayPanels[w].add(arrayRButtons[q]);
+arrayPanels[w].add(arrayRButtons[q+1]);
+arrayPanels[w].add(arrayRButtons[q+2]);
+arrayPanels[w].add(arrayRButtons[q+3]);
+
+q+=4;
+}
+
+frame.add(p1,BorderLayout.NORTH);
+frame.add(p2,BorderLayout.CENTER);
+frame.add(p3,BorderLayout.SOUTH);
+
+cl.show(p2, "0");
+
+tim.start();
+frame.setVisible(true);
+
+}
+
+    
+    public static void main(String[] args) {
+        
+        resultado2 start=new resultado2();
+        start.startGUI();
+    
+
+    }
+    
+}
